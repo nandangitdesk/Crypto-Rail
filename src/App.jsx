@@ -6,12 +6,12 @@ import CoinPage from './pages/CoinPage'
 
 const App = () => {
   return (
-    <div className='min-h-screen w-screen'>
+    <div className='min-h-screen w-screen '>
       <Header/>
 
       <Routes>
         <Route path='/' element={<Home/>} />
-        <Route path='/coin/:id' element={<CoinPage/>} />
+        <Route path='/coins/:id' element={<CoinPage/>} />
       </Routes>
     </div>
   )
