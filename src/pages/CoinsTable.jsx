@@ -16,30 +16,14 @@ import { FaCaretUp, FaCaretDown, FaSearch } from 'react-icons/fa'
 import { Link } from 'react-router-dom'
 
 const CoinsTable = () => {
-  const [coins, setCoins] = useState([])
-  const [loading, setLoading] = useState(false)
+ 
   const [page, setPage] = useState(0)
   const [rowsPerPage, setRowsPerPage] = useState(10)
   const [search, setSearch] = useState('')
 
-  const { currency, symbol } = CryptoState()
+  const { currency, symbol , coins , loading , fetchCoins} = CryptoState()
 
-  const fetchCoins = async () => {
-    setLoading(true);
-    try {
-      const { data } = await axios.get(CoinList(currency), {
-        headers: {
-          accept: 'application/json',
-          'x-cg-demo-api-key': 'CG-pLYYuCasCyxzsRDsiZ2kMzs6', 
-        },
-      });
-      setCoins(data);
-    } catch (error) {
-      console.error("Error fetching coins:", error);
-    } finally {
-      setLoading(false);
-    }
-  };
+
 
   useEffect(() => {
     fetchCoins()

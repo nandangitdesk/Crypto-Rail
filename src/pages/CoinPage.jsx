@@ -2,18 +2,20 @@ import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { SingleCoin } from '../config/api';
 import axios from 'axios';
-import { CircularProgress } from '@mui/material';
+import { Button, CircularProgress } from '@mui/material';
 import { CryptoState } from '../CryptoContext';
 import { FaCaretDown, FaCaretUp } from 'react-icons/fa';
 import { Typography } from '@mui/material';
 import CoinInfo from '../components/CoinInfo';
+import { doc, setDoc } from 'firebase/firestore';
+import { db } from '../firebase';
 
 const CoinPage = () => {
  
   const {id} = useParams()
   const [coin, setCoin] = useState();
   const [loading, setLoading] = useState(true)
-  const {currency, symbol} = CryptoState();
+  const {currency, symbol , user,watchlist, setAlert} = CryptoState();
 
   const fetchCoin = async () => {
     setLoading(true)
@@ -60,6 +62,57 @@ if (descriptionText) {
   displayedDescription = "Description not available"; // Fallback text if description is missing
 }
   
+//check whether in watchlist
+const inWatchlist = watchlist?.includes(coin?.id);
+
+//Add to watchlist
+ const addToWatchList = async () => {
+    const coinRef = doc(db,"watchlist",user.uid);
+
+    try {
+      await setDoc(coinRef, 
+        { coins:watchlist?[...watchlist,coin?.id]:[coin?.id]},
+      );
+      
+      setAlert({
+        open: true,
+        message: `${coin.name} added to watchlist`,
+        type: 'success',
+      });
+
+    }catch(error) {
+      setAlert({
+        open: true,
+        message: error.message,
+        type: 'error',
+      });
+    }
+ }
+
+ //remove from watchlist
+ const removeFromWatchList = async () => {
+  const coinRef = doc(db,"watchlist",user.uid);
+
+  try {
+    await setDoc(coinRef, 
+      { coins:watchlist?.filter((watch) => watch !== coin?.id)},
+      { merge: true },
+    );
+
+    setAlert({
+      open: true,
+      message: `${coin.name} removed from watchlist`,
+      type: 'success',
+    });
+
+  }catch(error) {
+    setAlert({
+      open: true,
+      message: error.message,
+      type: 'error',
+    });
+  }
+}
 
 
   if (loading) {
@@ -119,6 +172,17 @@ if (descriptionText) {
                   {formatNumber(coin.market_data.price_change_percentage_24h)}%
                 </Typography>
               </div>
+              { user && (
+                <Button
+                 sx={{ fontFamily: 'Space Mono, monospace' , color: 'black' , bgcolor: inWatchlist ? 'grey' : 'white'}}
+                  variant="contained"
+                  
+                  className="w-full"
+                  onClick={inWatchlist ? removeFromWatchList : addToWatchList}
+                >
+                  {inWatchlist ? 'Remove from Watchlist' : 'Add to Watchlist'}
+                </Button>
+              )}
             </div>
           </div>
         </div>

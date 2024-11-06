@@ -3,6 +3,7 @@ import Header from './components/Header'
 import { Route, Routes } from 'react-router-dom'
 import Home from './pages/Home'
 import CoinPage from './pages/CoinPage'
+import Alert from "./components/Alert";
 
 const App = () => {
   return (
