@@ -36,5 +36,5 @@ Follow these steps to set up the project locally:
 
 1. **Clone the repository**:
    ```bash
-   git clone https://github.com/your-username/crypto-tracker-app.git
-   cd crypto-tracker-app
+   git clone https://github.com/nandangitdesk/Crypto-Rail.git
+   cd Crypto-Rail
