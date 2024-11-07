@@ -1,4 +1,4 @@
-# 🚀 Crypto Tracker App 📈
+# 🚀 Crypto Rail - crypto tracker app 📈
 
 Welcome to the **Crypto Tracker App**! This is a React-based frontend application that allows users to track cryptocurrency prices, monitor their watchlist, and view historical data for their favorite coins. Deployed on Netlify, the app fetches real-time crypto data using the [CoinGecko API](https://www.coingecko.com/en/api) and is styled with Tailwind CSS.
 
@@ -35,7 +35,8 @@ The Crypto Tracker App provides users with real-time information on various cryp
 Follow these steps to set up the project locally:
 
 ##  Clone the repository:
-   git clone https://github.com/nandangitdesk/Crypto-Rail.git
+   git clone https://github.com/nandangitdesk/Crypto-Rail.git 
+   
    cd Crypto-Rail
 
 
