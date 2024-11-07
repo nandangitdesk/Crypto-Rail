@@ -34,7 +34,42 @@ The Crypto Tracker App provides users with real-time information on various cryp
 
 Follow these steps to set up the project locally:
 
-1. **Clone the repository**:
-   ```bash
+##  Clone the repository:
    git clone https://github.com/nandangitdesk/Crypto-Rail.git
    cd Crypto-Rail
+
+
+   
+## Install dependencies
+
+npm install
+
+
+
+## 🔧 Environment Setup
+Create a .env file in the root directory and add the following variables:
+
+REACT_APP_FIREBASE_API_KEY=your_firebase_api_key
+REACT_APP_FIREBASE_AUTH_DOMAIN=your_firebase_auth_domain
+REACT_APP_PROJECT_ID=your_project_id
+REACT_APP_STORAGE_BUCKET=your_storage_bucket
+REACT_APP_MESSAGING_SENDER_ID=your_messaging_sender_id
+REACT_APP_APP_ID=your_app_id
+REACT_APP_COIN_API_URL=https://api.coingecko.com/api/v3
+
+
+
+## 🏃 Start the Development Server
+To run the app in development mode:
+
+npm start
+
+
+
+## The app will be available at http://localhost:5173.
+
+
+
+
+## 📄 License
+This project is licensed under the MIT License. See the LICENSE file for more information.
